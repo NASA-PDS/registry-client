@@ -1,11 +1,66 @@
-# PDS Template Repository for Python
 
-This is the template repository for PDS's Python projects.
+# AWS AOSS Request Signer
 
-This repository aims at being a base for new python repositories used in PDS. It guides developers to ease the initialization of a project and recommends preferred options to standardize developments and ease maintenance. Simply click the <kbd>Use this template</kbd> button ↑ (or use [this hyperlink](https://github.com/NASA-PDS/pds-template-repo-python/generate)).
+This is a prototype implementation of a request-signing utility for use with serverless OpenSearch (AOSS).  It is 
+(currently) intended to provide a curl-like interface for querying PDS Registry's AOSS instance using a Cognito user
+identity.
 
+Additional functionality may be built out in the future.
 
-## 🏃 Getting Started With This Template
+## Prerequisites
+
+- Personal user/pass credentials for a Cognito user authorized for Registry AOSS
+- Python >=3.9
+- Environment variables (contact developer for values)
+  ```bash
+    export REQUEST_SIGNER_AWS_ACCOUNT=''
+    export REQUEST_SIGNER_AWS_REGION=''
+    export REQUEST_SIGNER_CLIENT_ID=''
+    export REQUEST_SIGNER_USER_POOL_ID=''
+    export REQUEST_SIGNER_IDENTITY_POOL_ID=''
+    export REQUEST_SIGNER_AOSS_ENDPOINT=''
+    export REQUEST_SIGNER_COGNITO_USER=''
+    export REQUEST_SIGNER_COGNITO_PASSWORD=''
+  ```
+
+## User Quickstart
+
+1. Clone the repository
+    ```
+   git clone $URL ./aoss-request-signer
+   cd aoss-request-signer
+    ```
+   
+
+2. Create a virtual environment
+    ```
+    python -m venv venv
+    source ./venv/bin/activate
+    ```
+
+3. Install the tool to the virtual environment
+    ```
+    pip install .
+    ```
+
+4. Run the tool directly
+    ```
+    python run.py --help
+    ```
+
+---
+
+## BEGIN BOILERPLATE
+
+[//]: # (TODO: Package as a proper CLI executable)
+If possible, make it so that your program works out of the box without any additional configuration—but see the [Configuration](###configuration) section for details.
+
+To execute, run:
+
+    (put your run commands here)
+
+[//]: # (TODO: POPULATE THESE TEAMS)
+## 🏃 Getting Started With This Template 
 
 See our wiki page for more info on setting up your new repo. You can remove this section once you have completed the necessary start-up steps.
 
@@ -21,30 +76,6 @@ https://github.com/NASA-PDS/nasa-pds.github.io/wiki/Git-and-Github-Guide#creatin
 
 ---
 
-# My Project
-
-This is the XYZ that does this, that, and the other thing for the Planetary Data System.
-
-Please visit our website at: https://nasa-pds.github.io/pds-my-project
-
-It has useful information for developers and end-users.
-
-## Prerequisites
-
-Include any system-wide requirements (`brew install`, `apt-get install`, `yum install`, …) **Python 3** should be used regardless as [Python 2 reached end-of-life on January 1st, 2020](https://pythonclock.org/).
-
-
-## User Quickstart
-
-Install with:
-
-    pip install my_pds_module
-
-If possible, make it so that your program works out of the box without any additional configuration—but see the [Configuration](###configuration) section for details.
-
-To execute, run:
-
-    (put your run commands here)
 
 
 ## Code of Conduct
