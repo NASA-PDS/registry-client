@@ -1,13 +1,11 @@
+#!/usr/bin/env python
+
 import argparse
 import json
 import os.path
-import urllib.parse
 
-import requests
-from opensearchpy import RequestsAWSV4SignerAuth
-
-from src.pds.aossrequestsigner.credentials import get_credentials_via_cognito_userpass_flow
-from src.pds.aossrequestsigner.utils import get_checked_filepath, parse_path
+from pds.aossrequestsigner.run import run as run_aoss_request_signer
+from pds.aossrequestsigner.utils import get_checked_filepath, parse_path
 
 
 def parse_args() -> argparse.Namespace:
@@ -45,41 +43,20 @@ if __name__ == '__main__':
 
     args = parse_args()
 
-    credentials = get_credentials_via_cognito_userpass_flow(
+    run_aoss_request_signer(
         aws_region,
         aws_account_id,
         client_id,
         identity_pool_id,
         user_pool_id,
         cognito_user,
-        cognito_password
+        cognito_password,
+        aoss_endpoint,
+        args.path,
+        data=args.data,
+        additional_headers=args.headers,
+        output_filepath=args.output_filepath,
+        verbose=args.verbose,
+        silent=args.silent,
+        prettify_output=args.pretty,
     )
-
-    auth = RequestsAWSV4SignerAuth(credentials, aws_region, 'aoss')
-
-    url = urllib.parse.urljoin(aoss_endpoint, args.path)
-    if args.verbose:
-        print(f'Making request to url: {url}')
-
-    body = json.dumps(args.data)
-    if args.verbose:
-        print(f'Including POST body: {body}')
-
-    headers = {'Content-Type': 'application/json'}
-    for raw_header_str in args.headers:
-        k, v = raw_header_str.split(':', maxsplit=1)
-        headers.update({k, v.strip()})
-    if args.verbose:
-        print(f'Including headers: {json.dumps(headers)}')
-
-    response = requests.post(url=url, data=body, auth=auth, headers=headers)
-    output = json.dumps(response.json(), indent=2) if args.pretty else json.dumps(response.json())
-
-    if args.output_filepath is not None:
-        if args.verbose:
-            print(f'Writing response content to {args.output_filepath}')
-        with open(args.output_filepath, 'w+') as out_file:
-            out_file.write(output)
-
-    if not args.silent:
-        print(output)
