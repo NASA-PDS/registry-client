@@ -27,8 +27,8 @@ Additional functionality may be built out in the future.
 
 1. Clone the repository
     ```
-   git clone $URL ./aoss-request-signer
-   cd aoss-request-signer
+   git clone https://github.com/NASA-PDS/serverless-opensearch-request-signer.git
+   cd serverless-opensearch-request-signer
     ```
    
 
@@ -45,7 +45,7 @@ Additional functionality may be built out in the future.
 
 4. Run the tool directly
     ```
-    python run.py --help
+    ./cli/makesignedrequest --help
     ```
 
 ---
