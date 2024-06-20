@@ -5,7 +5,7 @@ import json
 import os.path
 
 from pds.aossrequestsigner.run import run as run_aoss_request_signer
-from pds.aossrequestsigner.utils import get_checked_filepath, parse_path
+from pds.aossrequestsigner.utils import get_checked_filepath, parse_path, process_data_arg
 
 
 def parse_args() -> argparse.Namespace:
@@ -17,7 +17,7 @@ def parse_args() -> argparse.Namespace:
 
     args.add_argument('path', type=parse_path,
                       help='either a full URL (<scheme>://<host>/<path>) or a host-relative path (/<path>) for the request. Providing a full URL will not override the host endpoint provided as an environment variable (this may change in future)')
-    args.add_argument('-d', '--data', type=json.loads, default={'query': {'match_all': {}}},
+    args.add_argument('-d', '--data', type=process_data_arg, default={'query': {'match_all': {}}},
                       help='POST body to include in the request. Defaults to an OpenSearch match-all query.  See https://opensearch.org/docs/latest/query-dsl/ for details.')
     args.add_argument('-o', '--output', dest='output_filepath', type=get_checked_filepath, default=None,
                       help='Output filepath for response content')

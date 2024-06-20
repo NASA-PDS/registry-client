@@ -1,5 +1,8 @@
+import json
+import logging
 import os
 import urllib.parse
+from typing import Dict
 
 
 def parse_path(path_or_url: str) -> str:
@@ -22,3 +25,15 @@ def get_checked_filepath(raw_filepath: str) -> str:
     open(checked_filepath, 'w+')
 
     return checked_filepath
+
+def process_data_arg(raw_input: str) -> Dict:
+    """Implements a subset of curl-like processing of --data args, like @path/to/file"""
+
+    if raw_input.startswith('@'):
+        filepath = os.path.abspath(raw_input[1:])
+        with open(filepath) as content_f:
+            content = json.load(content_f)
+    else:
+        content = json.loads(raw_input)
+
+    return content
