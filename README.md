@@ -40,7 +40,7 @@ Additional functionality may be built out in the future.
 
 3. Install the tool to the virtual environment
     ```
-    pip install .
+    pip install --editable .[dev]
     ```
 
 4. Run the tool directly
