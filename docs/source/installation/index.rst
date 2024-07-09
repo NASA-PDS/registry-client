@@ -12,7 +12,7 @@ sections:
 Unix and Unix-Like Systems
 --------------------------
 
-Follow the instructions in this section to install the Deep Archive software
+Follow the instructions in this section to install the software
 onto Unix and Unix-like systems. This includes operating systems such as
 Linux, FreeBSD, OpenBSD, NetBSD, etc., as well as Apple Macintosh systems
 running macOS.
@@ -101,7 +101,7 @@ it's properly installed.
 Windows Installation
 --------------------
 
-To install the Deep Archive software on Windows comprises the following steps:
+To install the software on Windows comprises the following steps:
 
 1. Installing Python 3.11 for Windows
 2. Creating a "virtual environment" to contain an isolated instance of Python 3.11
@@ -166,7 +166,7 @@ Python supports the notion of "virtual environments", which are small
 installations of Python that are isolated from the system's installation.
 This enables you to install software for different Python applications without
 interfering dependencies or conflicts. We recommend creating a virtual
-environment for the Deep Archive software.
+environment for the software.
 
 To do so, open Windows PowerShell (as above) and at the prompt, type the
 following command (then press Enter)::
