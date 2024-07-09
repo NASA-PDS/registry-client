@@ -1,3 +1,7 @@
+"""Credentials.
+
+Get user credentials from Cognito
+"""
 import boto3
 from botocore.credentials import Credentials
 
@@ -10,6 +14,7 @@ def get_credentials_via_cognito_userpass_flow(
         user_pool_id: str,
         username: str,
         password: str) -> Credentials:
+    """Get creds via Cognito."""
     # Initialize a Cognito identity provider client
     idp_client = boto3.client('cognito-idp', region_name=region)
     id_client = boto3.client('cognito-identity', region_name=region)
@@ -24,8 +29,9 @@ def get_credentials_via_cognito_userpass_flow(
         ClientId=client_id
     )
 
-    access_token = response['AuthenticationResult']['AccessToken']
-    refresh_token = response['AuthenticationResult']['RefreshToken']
+    # Commenting out, but leaving in for potential testing purposes
+    # access_token = response['AuthenticationResult']['AccessToken']
+    # refresh_token = response['AuthenticationResult']['RefreshToken']
     id_token = response['AuthenticationResult']['IdToken']
 
     # Authenticate as identity-pool IAM identity

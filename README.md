@@ -1,7 +1,7 @@
 
 # PDS Registry Client
 
-This is a prototype implementation of a request-signing utility for use with serverless OpenSearch (AOSS).  It is 
+This is a prototype implementation of a request-signing utility for use with serverless OpenSearch (AOSS).  It is
 (currently) intended to provide a curl-like interface for querying PDS Registry's AOSS instance using a Cognito user
 identity.
 
@@ -23,14 +23,61 @@ Additional functionality may be built out in the future.
     export REQUEST_SIGNER_COGNITO_PASSWORD=''
   ```
 
-## User Quickstart
+## Installation
+
+### Unix and Unix-like Systems
+1. Create a virtual environment
+    ```
+    # Example assumes bash command shell. For others, consult shell documentation.
+    mkdir -p $HOME/.virtualenvs
+    python3 -m venv $HOME/.virtualenvs/registry-client
+    source $HOME/.virtualenvs/registry-client/bin/activate
+    ```
+
+2. Install the tool to the virtual environment
+    ```
+    pip install pds.registry-client
+    ```
+
+3. Run the tool directly
+    ```
+    registry-client --help
+    ```
+### Windows Installation
+For help installing Python, [see this documentation from PDS Deep Archive](https://nasa-pds.github.io/deep-archive/installation/index.html#installing-python-for-windows).
+
+To install the Registry Client software on Windows comprises the following steps:
+
+Installing Python 3.11 for Windows
+Creating a “virtual environment” to contain an isolated instance of Python 3.11
+Installing LXML 4.9.0 for Python 3.11 into the virtual environment
+Installing the PDS Deep Archive into the virtual environment
+
+## Upgrading the Software
+To check and install an upgrade to the software, run the following command in your virtual environment (on Unix and Unix-like systems):
+
+```
+source $HOME/.virtualenvs/registry-client/bin/activate
+pip install --upgrade pds.registry-client
+```
+
+Or on Windows in PowerShell:
+
+```
+.\pds\Scripts\activate.ps1
+pip install --upgrade pds.deeparchive
+```
+---
+
+
+## Developer Quickstart
 
 1. Clone the repository
     ```
    git clone https://github.com/NASA-PDS/registry-client.git
    cd registry-client
     ```
-   
+
 
 2. Create a virtual environment
     ```
@@ -45,38 +92,8 @@ Additional functionality may be built out in the future.
 
 4. Run the tool directly
     ```
-    ./cli/makesignedrequest --help
+    registry-client --help
     ```
-
----
-
-## BEGIN BOILERPLATE
-
-[//]: # (TODO: Package as a proper CLI executable)
-If possible, make it so that your program works out of the box without any additional configuration—but see the [Configuration](###configuration) section for details.
-
-To execute, run:
-
-    (put your run commands here)
-
-[//]: # (TODO: POPULATE THESE TEAMS)
-## 🏃 Getting Started With This Template 
-
-See our wiki page for more info on setting up your new repo. You can remove this section once you have completed the necessary start-up steps.
-
-https://github.com/NASA-PDS/nasa-pds.github.io/wiki/Git-and-Github-Guide#creating-a-new-repo
-
-**👉 Important!** You must assign the teams as mentioned on the wiki page above! At a minimum, these are:
-
-| Team                                | Permission |
-| ----------------------------------- | ---------- |
-| `@NASA-PDS/pds-software-committers` | `write`    |
-| `@NASA-PDS/pds-software-pmc`        | `admin`    |
-| `@NASA-PDS/pds-operations`          | `admin`    |
-
----
-
-
 
 ## Code of Conduct
 
