@@ -12,8 +12,8 @@ from typing import Optional
 
 import requests
 from opensearchpy import RequestsAWSV4SignerAuth
-from pds.aossrequestsigner.credentials import get_credentials_via_cognito_userpass_flow
-from pds.aossrequestsigner.utils import get_checked_filepath
+from pds.aossrequestsigner.credentials import get_credentials_via_cognito_userpass_flow  # type: ignore
+from pds.aossrequestsigner.utils import get_checked_filepath  # type: ignore
 from pds.aossrequestsigner.utils import parse_path
 from pds.aossrequestsigner.utils import process_data_arg
 
@@ -51,9 +51,10 @@ def run(
         print(f"Including POST body: {body}")
 
     headers = {"Content-Type": "application/json"}
-    for raw_header_str in additional_headers:
-        k, v = raw_header_str.split(":", maxsplit=1)
-        headers.update({k, v.strip()})
+    if additional_headers is not None:
+        for raw_header_str in additional_headers:
+            k, v = raw_header_str.split(":", maxsplit=1)
+            headers[k] = v.strip()
     if verbose:
         print(f"Including headers: {json.dumps(headers)}")
 
