@@ -23,53 +23,6 @@ Additional functionality may be built out in the future.
     export REQUEST_SIGNER_COGNITO_PASSWORD=''
   ```
 
-## Installation
-
-### Unix and Unix-like Systems
-1. Create a virtual environment
-    ```
-    # Example assumes bash command shell. For others, consult shell documentation.
-    mkdir -p $HOME/.virtualenvs
-    python3 -m venv $HOME/.virtualenvs/registry-client
-    source $HOME/.virtualenvs/registry-client/bin/activate
-    ```
-
-2. Install the tool to the virtual environment
-    ```
-    pip install pds.registry-client
-    ```
-
-3. Run the tool directly
-    ```
-    registry-client --help
-    ```
-### Windows Installation
-For help installing Python, [see this documentation from PDS Deep Archive](https://nasa-pds.github.io/deep-archive/installation/index.html#installing-python-for-windows).
-
-To install the Registry Client software on Windows comprises the following steps:
-
-Installing Python 3.11 for Windows
-Creating a “virtual environment” to contain an isolated instance of Python 3.11
-Installing LXML 4.9.0 for Python 3.11 into the virtual environment
-Installing the PDS Deep Archive into the virtual environment
-
-## Upgrading the Software
-To check and install an upgrade to the software, run the following command in your virtual environment (on Unix and Unix-like systems):
-
-```
-source $HOME/.virtualenvs/registry-client/bin/activate
-pip install --upgrade pds.registry-client
-```
-
-Or on Windows in PowerShell:
-
-```
-.\pds\Scripts\activate.ps1
-pip install --upgrade pds.deeparchive
-```
----
-
-
 ## Developer Quickstart
 
 1. Clone the repository

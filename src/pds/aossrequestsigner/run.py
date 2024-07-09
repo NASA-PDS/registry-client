@@ -8,6 +8,7 @@ import os
 import urllib.parse
 from typing import Dict
 from typing import Iterable
+from typing import Optional
 
 import requests
 from opensearchpy import RequestsAWSV4SignerAuth
@@ -18,21 +19,21 @@ from pds.aossrequestsigner.utils import process_data_arg
 
 
 def run(
-        aws_region: str,
-        aws_account_id: str,
-        client_id: str,
-        identity_pool_id: str,
-        user_pool_id: str,
-        cognito_user: str,
-        cognito_password: str,
-        aoss_endpoint: str,
-        request_path: str,
-        data: Dict = None,
-        additional_headers: Iterable[str] = None,
-        output_filepath: str = None,
-        verbose: bool = False,
-        silent: bool = False,
-        prettify_output: bool = False,
+    aws_region: str,
+    aws_account_id: str,
+    client_id: str,
+    identity_pool_id: str,
+    user_pool_id: str,
+    cognito_user: str,
+    cognito_password: str,
+    aoss_endpoint: str,
+    request_path: str,
+    data: Optional[Dict] = None,
+    additional_headers: Optional[Iterable[str]] = None,
+    output_filepath: Optional[str] = None,
+    verbose: bool = False,
+    silent: bool = False,
+    prettify_output: bool = False,
 ):
     """Runner."""
     credentials = get_credentials_via_cognito_userpass_flow(
@@ -80,17 +81,21 @@ def parse_args() -> argparse.Namespace:
     args.add_argument(
         "path",
         type=parse_path,
-        help=("either a full URL (<scheme>://<host>/<path>) or a host-relative path (/<path>) for the request. "
-              "Providing a full URL will not override the host endpoint provided as an environment variable "
-              "(this may change in future)"),
+        help=(
+            "either a full URL (<scheme>://<host>/<path>) or a host-relative path (/<path>) for the request. "
+            "Providing a full URL will not override the host endpoint provided as an environment variable "
+            "(this may change in future)"
+        ),
     )
     args.add_argument(
         "-d",
         "--data",
         type=process_data_arg,
         default={"query": {"match_all": {}}},
-        help=("POST body to include in the request. Defaults to an OpenSearch match-all query.  "
-              "See https://opensearch.org/docs/latest/query-dsl/ for details."),
+        help=(
+            "POST body to include in the request. Defaults to an OpenSearch match-all query.  "
+            "See https://opensearch.org/docs/latest/query-dsl/ for details."
+        ),
     )
     args.add_argument(
         "-o",
@@ -107,8 +112,10 @@ def parse_args() -> argparse.Namespace:
         default=[],
         action="append",
         nargs="*",
-        help=('Add an extra header to use in the request, in format "Key: Value". "Content-Type: application/json" is '
-              'included by default but may be overwritten.'),
+        help=(
+            'Add an extra header to use in the request, in format "Key: Value". "Content-Type: application/json" is '
+            "included by default but may be overwritten."
+        ),
     )
 
     args.add_argument("-p", "--pretty", action="store_true", help="Prettify output with a 2-space-indent JSON format")
