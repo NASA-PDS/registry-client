@@ -1,5 +1,5 @@
 
-# AWS AOSS Request Signer
+# PDS Registry Client
 
 This is a prototype implementation of a request-signing utility for use with serverless OpenSearch (AOSS).  It is 
 (currently) intended to provide a curl-like interface for querying PDS Registry's AOSS instance using a Cognito user
@@ -27,8 +27,8 @@ Additional functionality may be built out in the future.
 
 1. Clone the repository
     ```
-   git clone https://github.com/NASA-PDS/serverless-opensearch-request-signer.git
-   cd serverless-opensearch-request-signer
+   git clone https://github.com/NASA-PDS/registry-client.git
+   cd registry-client
     ```
    
 
