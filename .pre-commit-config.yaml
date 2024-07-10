@@ -3,9 +3,7 @@ repos:
     rev: v4.0.1
     hooks:
     -   id: trailing-whitespace
-        exclude: REQUIREMENTS\.md$
     -   id: end-of-file-fixer
-        exclude: REQUIREMENTS\.md$
     -   id: check-executables-have-shebangs
     -   id: check-merge-conflict
     -   id: debug-statements
@@ -26,14 +24,14 @@ repos:
         language: system
         pass_filenames: false
 
--   repo: local
-    hooks:
-    -   id: black
-        name: black
-        entry: black
-        files: ^src/|tests/
-        language: system
-        types: [python]
+# Black: thanks, I hate it.
+# -   repo: local
+#     hooks:
+#     -   id: black
+#         name: black
+#         entry: black
+#         files: ^src/|tests/
+#         language: system
 
 -   repo: local
     hooks:
@@ -61,6 +59,7 @@ repos:
           - '--baseline'
           - '.secrets.baseline'
           - --exclude-files '\.secrets..*'
+          - --exclude-files '\.pre-commit-config.yaml'
           - --exclude-files '\.git.*'
           - --exclude-files '\.mypy_cache'
           - --exclude-files '\.pytest_cache'

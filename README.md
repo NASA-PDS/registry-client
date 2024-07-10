@@ -1,7 +1,7 @@
 
 # PDS Registry Client
 
-This is a prototype implementation of a request-signing utility for use with serverless OpenSearch (AOSS).  It is 
+This is a prototype implementation of a request-signing utility for use with serverless OpenSearch (AOSS).  It is
 (currently) intended to provide a curl-like interface for querying PDS Registry's AOSS instance using a Cognito user
 identity.
 
@@ -23,14 +23,14 @@ Additional functionality may be built out in the future.
     export REQUEST_SIGNER_COGNITO_PASSWORD=''
   ```
 
-## User Quickstart
+## Developer Quickstart
 
 1. Clone the repository
     ```
    git clone https://github.com/NASA-PDS/registry-client.git
    cd registry-client
     ```
-   
+
 
 2. Create a virtual environment
     ```
@@ -40,43 +40,13 @@ Additional functionality may be built out in the future.
 
 3. Install the tool to the virtual environment
     ```
-    pip install .
+    pip install --editable .[dev]
     ```
 
 4. Run the tool directly
     ```
-    ./cli/makesignedrequest --help
+    registry-client --help
     ```
-
----
-
-## BEGIN BOILERPLATE
-
-[//]: # (TODO: Package as a proper CLI executable)
-If possible, make it so that your program works out of the box without any additional configuration—but see the [Configuration](###configuration) section for details.
-
-To execute, run:
-
-    (put your run commands here)
-
-[//]: # (TODO: POPULATE THESE TEAMS)
-## 🏃 Getting Started With This Template 
-
-See our wiki page for more info on setting up your new repo. You can remove this section once you have completed the necessary start-up steps.
-
-https://github.com/NASA-PDS/nasa-pds.github.io/wiki/Git-and-Github-Guide#creating-a-new-repo
-
-**👉 Important!** You must assign the teams as mentioned on the wiki page above! At a minimum, these are:
-
-| Team                                | Permission |
-| ----------------------------------- | ---------- |
-| `@NASA-PDS/pds-software-committers` | `write`    |
-| `@NASA-PDS/pds-software-pmc`        | `admin`    |
-| `@NASA-PDS/pds-operations`          | `admin`    |
-
----
-
-
 
 ## Code of Conduct
 
