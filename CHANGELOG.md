@@ -1,8 +1,16 @@
 # Changelog
 
-## [release/0.2.0](https://github.com/NASA-PDS/registry-client/tree/release/0.2.0) (2024-07-29)
+## [«unknown»](https://github.com/NASA-PDS/registry-client/tree/«unknown») (2024-07-29)
 
-[Full Changelog](https://github.com/NASA-PDS/registry-client/compare/v0.1.0...release/0.2.0)
+[Full Changelog](https://github.com/NASA-PDS/registry-client/compare/v0.2.0...«unknown»)
+
+**Defects:**
+
+- pypi installation is broken [\#3](https://github.com/NASA-PDS/registry-client/issues/3)
+
+## [v0.2.0](https://github.com/NASA-PDS/registry-client/tree/v0.2.0) (2024-07-29)
+
+[Full Changelog](https://github.com/NASA-PDS/registry-client/compare/v0.1.0...v0.2.0)
 
 ## [v0.1.0](https://github.com/NASA-PDS/registry-client/tree/v0.1.0) (2024-07-29)
 
