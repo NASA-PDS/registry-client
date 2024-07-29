@@ -1,16 +1,16 @@
 # Changelog
 
-## [0.1.0](https://github.com/NASA-PDS/registry-client/tree/0.1.0) (2024-07-29)
+## [release/0.2.0](https://github.com/NASA-PDS/registry-client/tree/release/0.2.0) (2024-07-29)
 
-[Full Changelog](https://github.com/NASA-PDS/registry-client/compare/release/0.1.0...0.1.0)
+[Full Changelog](https://github.com/NASA-PDS/registry-client/compare/v0.1.0...release/0.2.0)
+
+## [v0.1.0](https://github.com/NASA-PDS/registry-client/tree/v0.1.0) (2024-07-29)
+
+[Full Changelog](https://github.com/NASA-PDS/registry-client/compare/0287b5f441fb9fab64c0659fc3d60793ca7fdf5b...v0.1.0)
 
 **Other closed issues:**
 
 - Update registry-client to follow similar python CLI tool installations and executions [\#1](https://github.com/NASA-PDS/registry-client/issues/1)
-
-## [release/0.1.0](https://github.com/NASA-PDS/registry-client/tree/release/0.1.0) (2024-07-10)
-
-[Full Changelog](https://github.com/NASA-PDS/registry-client/compare/0287b5f441fb9fab64c0659fc3d60793ca7fdf5b...release/0.1.0)
 
 
 
