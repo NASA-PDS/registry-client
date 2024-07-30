@@ -19,21 +19,21 @@ from pds.aossrequestsigner.utils import process_data_arg
 
 
 def run(
-    aws_region: str,
-    aws_account_id: str,
-    client_id: str,
-    identity_pool_id: str,
-    user_pool_id: str,
-    cognito_user: str,
-    cognito_password: str,
-    aoss_endpoint: str,
-    request_path: str,
-    data: Optional[Dict] = None,
-    additional_headers: Optional[Iterable[str]] = None,
-    output_filepath: Optional[str] = None,
-    verbose: bool = False,
-    silent: bool = False,
-    prettify_output: bool = False,
+        aws_region: str,
+        aws_account_id: str,
+        client_id: str,
+        identity_pool_id: str,
+        user_pool_id: str,
+        cognito_user: str,
+        cognito_password: str,
+        aoss_endpoint: str,
+        request_path: str,
+        data: Optional[Dict] = None,
+        additional_headers: Optional[Iterable[str]] = None,
+        output_filepath: Optional[str] = None,
+        verbose: bool = False,
+        silent: bool = False,
+        prettify_output: bool = False,
 ):
     """Runner."""
     credentials = get_credentials_via_cognito_userpass_flow(
@@ -156,3 +156,7 @@ def main():
         silent=args.silent,
         prettify_output=args.pretty,
     )
+
+
+if __name__ == '__main__':
+    main()
