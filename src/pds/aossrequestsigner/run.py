@@ -61,7 +61,8 @@ def run(
 
     response = requests.post(url=url, data=body, auth=auth, headers=headers)
     if response.status_code != 200:
-        raise Non200HttpStatusError(response.status_code)
+        response_msg = response.content or None
+        raise Non200HttpStatusError(response.status_code, description=response_msg)
 
     output = json.dumps(response.json(), indent=2) if prettify_output else json.dumps(response.json())
 
