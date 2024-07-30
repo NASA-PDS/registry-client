@@ -162,7 +162,8 @@ def main():
             prettify_output=args.pretty,
         )
     except Non200HttpStatusError as err:
-        print(err)
+        if not args.silent:
+            print(err)
         exit(1)
 
 if __name__ == '__main__':
