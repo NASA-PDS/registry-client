@@ -13,6 +13,7 @@ from typing import Optional
 import requests
 from opensearchpy import RequestsAWSV4SignerAuth
 from pds.aossrequestsigner.credentials import get_credentials_via_cognito_userpass_flow  # type: ignore
+from pds.aossrequestsigner.errors import Non200HttpStatusError
 from pds.aossrequestsigner.utils import get_checked_filepath  # type: ignore
 from pds.aossrequestsigner.utils import parse_path
 from pds.aossrequestsigner.utils import process_data_arg
@@ -59,6 +60,9 @@ def run(
         print(f"Including headers: {json.dumps(headers)}")
 
     response = requests.post(url=url, data=body, auth=auth, headers=headers)
+    if response.status_code != 200:
+        raise Non200HttpStatusError(response.status_code)
+
     output = json.dumps(response.json(), indent=2) if prettify_output else json.dumps(response.json())
 
     if output_filepath is not None:
@@ -139,24 +143,27 @@ def main():
 
     aoss_endpoint = os.environ["REQUEST_SIGNER_AOSS_ENDPOINT"]
 
-    run(
-        aws_region,
-        aws_account_id,
-        client_id,
-        identity_pool_id,
-        user_pool_id,
-        cognito_user,
-        cognito_password,
-        aoss_endpoint,
-        args.path,
-        data=args.data,
-        additional_headers=args.headers,
-        output_filepath=args.output_filepath,
-        verbose=args.verbose,
-        silent=args.silent,
-        prettify_output=args.pretty,
-    )
-
+    try:
+        run(
+            aws_region,
+            aws_account_id,
+            client_id,
+            identity_pool_id,
+            user_pool_id,
+            cognito_user,
+            cognito_password,
+            aoss_endpoint,
+            args.path,
+            data=args.data,
+            additional_headers=args.headers,
+            output_filepath=args.output_filepath,
+            verbose=args.verbose,
+            silent=args.silent,
+            prettify_output=args.pretty,
+        )
+    except Non200HttpStatusError as err:
+        print(err)
+        exit(1)
 
 if __name__ == '__main__':
     main()
