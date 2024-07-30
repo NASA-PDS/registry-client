@@ -125,6 +125,7 @@ def parse_args() -> argparse.Namespace:
     )
 
     args.add_argument("-p", "--pretty", action="store_true", help="Prettify output with a 2-space-indent JSON format")
+    args.add_argument("--noencode", dest="no_url_encode", action="store_true", help="Do not apply url-encoding to path")
 
     return args.parse_args()
 
@@ -154,7 +155,7 @@ def main():
             cognito_user,
             cognito_password,
             aoss_endpoint,
-            args.path,
+            args.path if args.no_url_encode else urllib.parse.quote(args.path, safe='/'),
             data=args.data,
             additional_headers=args.headers,
             output_filepath=args.output_filepath,
