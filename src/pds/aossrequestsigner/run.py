@@ -43,13 +43,14 @@ def run(
 
     auth = RequestsAWSV4SignerAuth(credentials, aws_region, "aoss")
 
+    request_f = requests.post if data else requests.get
     url = urllib.parse.urljoin(aoss_endpoint, request_path)
     if verbose:
-        print(f"Making request to url: {url}")
+        print(f"Making {'POST' if data else 'GET'} request to url: {url}")
 
     body = json.dumps(data)
     if verbose:
-        print(f"Including POST body: {body}")
+        print(f"Including body: {body}")
 
     headers = {"Content-Type": "application/json"}
     if additional_headers is not None:
@@ -59,7 +60,7 @@ def run(
     if verbose:
         print(f"Including headers: {json.dumps(headers)}")
 
-    response = requests.post(url=url, data=body, auth=auth, headers=headers)
+    response = request_f(url=url, data=body, auth=auth, headers=headers)
     if response.status_code != 200:
         response_msg = response.content or None
         raise Non200HttpStatusError(response.status_code, description=response_msg)
@@ -84,6 +85,8 @@ def parse_args() -> argparse.Namespace:
     verbosity_group.add_argument("-v", "--verbose", action="store_true", help="Provide verbose stdout output")
     verbosity_group.add_argument("-s", "--silent", action="store_true", help="Suppress stdout output")
 
+    data_group = args.add_mutually_exclusive_group()
+
     args.add_argument(
         "path",
         type=parse_path,
@@ -93,13 +96,13 @@ def parse_args() -> argparse.Namespace:
             "(this may change in future)"
         ),
     )
-    args.add_argument(
+    data_group.add_argument(
         "-d",
         "--data",
         type=process_data_arg,
-        default={"query": {"match_all": {}}},
+        default={},
         help=(
-            "POST body to include in the request. Defaults to an OpenSearch match-all query.  "
+            "Optional body to include in the request.  "
             "See https://opensearch.org/docs/latest/query-dsl/ for details."
         ),
     )
@@ -126,6 +129,7 @@ def parse_args() -> argparse.Namespace:
 
     args.add_argument("-p", "--pretty", action="store_true", help="Prettify output with a 2-space-indent JSON format")
     args.add_argument("--noencode", dest="no_url_encode", action="store_true", help="Do not apply url-encoding to path")
+    data_group.add_argument("--matchall", dest="apply_match_all", action="store_true", help="Apply match-all OpenSearch query")
 
     return args.parse_args()
 
@@ -145,6 +149,8 @@ def main():
 
     aoss_endpoint = os.environ["REQUEST_SIGNER_AOSS_ENDPOINT"]
 
+    match_all_query = {"query": {"match_all": {}}}
+
     try:
         run(
             aws_region,
@@ -156,7 +162,7 @@ def main():
             cognito_password,
             aoss_endpoint,
             args.path if args.no_url_encode else urllib.parse.quote(args.path, safe='/'),
-            data=args.data,
+            data=match_all_query if args.apply_match_all else args.data,
             additional_headers=args.headers,
             output_filepath=args.output_filepath,
             verbose=args.verbose,
