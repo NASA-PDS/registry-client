@@ -1,5 +1,8 @@
+from typing import Optional
+
+
 class Non200HttpStatusError(RuntimeError):
-    def __init__(self, status_code: int, description: str = None):
+    def __init__(self, status_code: int, description: Optional[str] = None):
         if status_code == 200:
             raise ValueError('Cannot init Non200HttpStatusError with status_code=200')
 

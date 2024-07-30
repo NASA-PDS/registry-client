@@ -13,7 +13,7 @@ from typing import Optional
 import requests
 from opensearchpy import RequestsAWSV4SignerAuth
 from pds.aossrequestsigner.credentials import get_credentials_via_cognito_userpass_flow  # type: ignore
-from pds.aossrequestsigner.errors import Non200HttpStatusError
+from pds.aossrequestsigner.errors import Non200HttpStatusError  # type: ignore
 from pds.aossrequestsigner.utils import get_checked_filepath  # type: ignore
 from pds.aossrequestsigner.utils import parse_path
 from pds.aossrequestsigner.utils import process_data_arg
@@ -60,7 +60,7 @@ def run(
     if verbose:
         print(f"Including headers: {json.dumps(headers)}")
 
-    response = request_f(url=url, data=body, auth=auth, headers=headers)
+    response = request_f(url=url, data=body, auth=auth, headers=headers)  # type: ignore
     if response.status_code != 200:
         response_msg = response.content or None
         raise Non200HttpStatusError(response.status_code, description=response_msg)
@@ -173,6 +173,7 @@ def main():
         if not args.silent:
             print(err)
         exit(1)
+
 
 if __name__ == '__main__':
     main()
