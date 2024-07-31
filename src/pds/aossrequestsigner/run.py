@@ -2,6 +2,8 @@
 
 Command-line runner
 """
+from http import HTTPStatus
+
 import argparse
 import json
 import os
@@ -61,7 +63,7 @@ def run(
         print(f"Including headers: {json.dumps(headers)}")
 
     response = request_f(url=url, data=body, auth=auth, headers=headers)  # type: ignore
-    if response.status_code != 200:
+    if response.status_code != HTTPStatus.OK:
         response_msg = response.content or None
         raise Non200HttpStatusError(response.status_code, description=response_msg)
 
