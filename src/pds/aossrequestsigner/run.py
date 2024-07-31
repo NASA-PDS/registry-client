@@ -2,13 +2,12 @@
 
 Command-line runner
 """
-import sys
-from http import HTTPStatus
-
 import argparse
 import json
 import os
+import sys
 import urllib.parse
+from http import HTTPStatus
 from typing import Dict
 from typing import Iterable
 from typing import Optional
