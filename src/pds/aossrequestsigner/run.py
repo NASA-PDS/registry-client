@@ -2,6 +2,7 @@
 
 Command-line runner
 """
+import sys
 from http import HTTPStatus
 
 import argparse
@@ -48,11 +49,11 @@ def run(
     request_f = requests.post if data else requests.get
     url = urllib.parse.urljoin(aoss_endpoint, request_path)
     if verbose:
-        print(f"Making {'POST' if data else 'GET'} request to url: {url}")
+        print(f"Making {'POST' if data else 'GET'} request to url: {url}", file=sys.stderr)
 
     body = json.dumps(data)
     if verbose:
-        print(f"Including body: {body}")
+        print(f"Including body: {body}", file=sys.stderr)
 
     headers = {"Content-Type": "application/json"}
     if additional_headers is not None:
@@ -60,7 +61,7 @@ def run(
             k, v = raw_header_str.split(":", maxsplit=1)
             headers[k] = v.strip()
     if verbose:
-        print(f"Including headers: {json.dumps(headers)}")
+        print(f"Including headers: {json.dumps(headers)}", file=sys.stderr)
 
     response = request_f(url=url, data=body, auth=auth, headers=headers)  # type: ignore
     if response.status_code != HTTPStatus.OK:
@@ -71,7 +72,7 @@ def run(
 
     if output_filepath is not None:
         if verbose:
-            print(f"Writing response content to {output_filepath}")
+            print(f"Writing response content to {output_filepath}", file=sys.stderr)
         with open(output_filepath, "w+") as out_file:
             out_file.write(output)
 
@@ -173,7 +174,7 @@ def main():
         )
     except Non200HttpStatusError as err:
         if not args.silent:
-            print(err)
+            print(err, file=sys.stderr)
         exit(1)
 
 
