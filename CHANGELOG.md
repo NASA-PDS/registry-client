@@ -1,12 +1,16 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/registry-client/tree/«unknown») (2024-07-29)
+## [«unknown»](https://github.com/NASA-PDS/registry-client/tree/«unknown») (2024-08-01)
 
 [Full Changelog](https://github.com/NASA-PDS/registry-client/compare/v0.2.0...«unknown»)
 
 **Defects:**
 
-- pypi installation is broken [\#3](https://github.com/NASA-PDS/registry-client/issues/3)
+- pypi installation is broken [\#3](https://github.com/NASA-PDS/registry-client/issues/3) [[s.high](https://github.com/NASA-PDS/registry-client/labels/s.high)]
+
+**Other closed issues:**
+
+- Fix error with get document by id request [\#6](https://github.com/NASA-PDS/registry-client/issues/6)
 
 ## [v0.2.0](https://github.com/NASA-PDS/registry-client/tree/v0.2.0) (2024-07-29)
 
