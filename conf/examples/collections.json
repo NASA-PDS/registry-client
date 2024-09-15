@@ -1,0 +1,14 @@
+{
+  "query": {
+    "match": {
+      "product_class": "Product_Collection"
+    }
+  },
+  "fields": [
+    "lidvid",
+    "ops:Label_File_Info/ops:file_ref",
+    "ops:Tracking_Meta/ops:archive_status",
+    "ops:Provenance/ops:parent_bundle_identifier"
+  ],
+  "_source": false
+}
