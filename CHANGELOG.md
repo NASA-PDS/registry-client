@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/registry-client/tree/«unknown») (2024-09-15)
+## [«unknown»](https://github.com/NASA-PDS/registry-client/tree/«unknown») (2024-09-24)
 
 [Full Changelog](https://github.com/NASA-PDS/registry-client/compare/v0.2.0...«unknown»)
 
@@ -10,6 +10,7 @@
 
 **Other closed issues:**
 
+- Add Usage instructions and simple JSON query examples [\#16](https://github.com/NASA-PDS/registry-client/issues/16)
 - Fix error with get document by id request [\#6](https://github.com/NASA-PDS/registry-client/issues/6)
 
 ## [v0.2.0](https://github.com/NASA-PDS/registry-client/tree/v0.2.0) (2024-07-29)
