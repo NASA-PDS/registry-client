@@ -19,6 +19,13 @@ Sitemap
 
 ..  toctree::
     :glob:
+    :caption: Usage
+
+    /usage/*
+
+
+..  toctree::
+    :glob:
     :caption: Support
 
     /support/*
