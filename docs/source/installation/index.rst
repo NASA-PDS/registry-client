@@ -34,10 +34,12 @@ the required packages. For those without system administrator access and are
 feeling anxious, you could try a local (home directory) Python_ 3 installation
 using Miniconda_.
 
-Prequisites
+.. _Install Prerequisites:
+
+Prerequisites
 ~~~~~~~~~~~
 - Personal user/pass credentials for a Cognito user authorized for Registry Amazon OpenSearch Serverless
-- Environment variables (contact developer for values)::
+- Environment variables (contact pds-operator@jpl.nasa.gov for values), for linux/unix like environments::
 
     export REQUEST_SIGNER_AWS_ACCOUNT=''
     export REQUEST_SIGNER_AWS_REGION=''
@@ -47,6 +49,8 @@ Prequisites
     export REQUEST_SIGNER_AOSS_ENDPOINT=''
     export REQUEST_SIGNER_COGNITO_USER=''
     export REQUEST_SIGNER_COGNITO_PASSWORD=''
+
+
 
 Doing the Installation on Unix
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -200,6 +204,19 @@ Enter)::
     pip install pds.registry-client
 
 Feel free to change the version number in the command as needed.
+
+You need to set the environment to configure the access to Registry OpenSearch server::
+
+    $env:REQUEST_SIGNER_AWS_ACCOUNT=''
+    $env:REQUEST_SIGNER_AWS_REGION=''
+    $env:REQUEST_SIGNER_CLIENT_ID=''
+    $env:REQUEST_SIGNER_USER_POOL_ID=''
+    $env:REQUEST_SIGNER_IDENTITY_POOL_ID=''
+    $env:REQUEST_SIGNER_AOSS_ENDPOINT=''
+    $env:REQUEST_SIGNER_COGNITO_USER='<replace with your username>'
+    $env:REQUEST_SIGNER_COGNITO_PASSWORD='<replace with your password>'
+
+Ask the values you need here to pds-operator@jpl.nasa.gov.
 
 You can then run ``pds-registry-client --help``to get a usage message and ensure
 it's properly installed.

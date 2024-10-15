@@ -1,0 +1,11 @@
+{
+  "size": 0,
+  "aggs": {
+    "response_codes": {
+      "terms": {
+        "field": "ops:Tracking_Meta/ops:archive_status",
+        "size": 99
+      }
+    }
+  }
+}
