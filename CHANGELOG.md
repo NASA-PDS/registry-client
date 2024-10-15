@@ -1,8 +1,8 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/registry-client/tree/«unknown») (2024-10-15)
+## [release/0.3.0](https://github.com/NASA-PDS/registry-client/tree/release/0.3.0) (2024-10-15)
 
-[Full Changelog](https://github.com/NASA-PDS/registry-client/compare/v0.2.0...«unknown»)
+[Full Changelog](https://github.com/NASA-PDS/registry-client/compare/v0.2.0...release/0.3.0)
 
 **Defects:**
 
