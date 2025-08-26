@@ -24,7 +24,7 @@ repos:
         language: system
         pass_filenames: false
 
-# Black: thanks, I hate it.
+# Black: conflicts with reorder-python-imports, so disabled for now.
 # -   repo: local
 #     hooks:
 #     -   id: black
@@ -56,6 +56,8 @@ repos:
     hooks:
       - id: detect-secrets
         args:
+          - '--disable-plugin'
+          - 'AbsolutePathDetectorExperimental'
           - '--baseline'
           - '.secrets.baseline'
           - --exclude-files '\.secrets..*'
@@ -69,3 +71,4 @@ repos:
           - --exclude-files 'dist'
           - --exclude-files 'build'
           - --exclude-files '.*\.egg-info'
+          - --exclude-files '\.pre-commit-config.yaml'

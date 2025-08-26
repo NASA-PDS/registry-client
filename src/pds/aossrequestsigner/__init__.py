@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-"""My PDS Module."""
-import pkg_resources
+"""PDS Registry Client."""
+import importlib.resources
 
 
-__version__ = pkg_resources.resource_string(__name__, "VERSION.txt").decode("utf-8").strip()
+__version__ = importlib.resources.files(__name__).joinpath("VERSION.txt").read_text().strip()
