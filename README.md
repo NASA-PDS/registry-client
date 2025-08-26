@@ -10,7 +10,7 @@ Additional functionality may be built out in the future.
 ## Prerequisites
 
 - Personal user/pass credentials for a Cognito user authorized for Registry AOSS
-- Python >=3.9
+- Python >=3.13
 - Environment variables (contact developer for values)
   ```bash
     export REQUEST_SIGNER_AWS_ACCOUNT=''
@@ -40,7 +40,7 @@ Additional functionality may be built out in the future.
 
 3. Install the tool to the virtual environment
     ```
-    pip install --editable .[dev]
+    pip install --editable '.[dev]'
     ```
 
 4. Run the tool directly
@@ -111,70 +111,22 @@ To isolate and be able to re-produce the environment for this package, you shoul
 
     python -m venv venv
 
-Then exclusively use `venv/bin/python`, `venv/bin/pip`, etc.
+Then activate the environment (as shown above) which will set your shell's `$PATH` so that `python3` and `pip` are run out of it rather than the system's Python.
 
 If you have `tox` installed and would like it to create your environment and install dependencies for you run:
 
     tox --devenv <name you'd like for env> -e dev
 
-Dependencies for development are specified as the `dev` `extras_require` in `setup.cfg`; they are installed into the virtual environment as follows:
+Or simply:
 
-    pip install --editable '.[dev]'
+    tox
 
-All the source code is in a sub-directory under `src`.
-
-You should update the `setup.cfg` file with:
-
-- name of your module
-- license, default apache, update if needed
-- description
-- download url, when you release your package on github add the url here
-- keywords
-- classifiers
-- install_requires, add the dependencies of you package
-- extras_require, add the development Dependencies of your package
-- entry_points, when your package can be called in command line, this helps to deploy command lines entry points pointing to scripts in your package
-
-For the packaging details, see https://packaging.python.org/tutorials/packaging-projects/ as a reference.
-
-
-### Configuration
-
-It is convenient to use ConfigParser package to manage configuration. It allows a default configuration which can be overwritten by the user in a specific file in their environment. See https://pymotw.com/2/ConfigParser/
-
-For example:
-
-    candidates = ['my_pds_module.ini', 'my_pds_module.ini.default']
-    found = parser.read(candidates)
-
-
-### Logs
-
-You should not use `print()`vin the purpose of logging information on the execution of your code. Depending on where the code runs these information could be redirected to specific log files.
-
-To make that work, start each Python file with:
-
-```python
-"""My module."""
-import logging
-
-logger = logging.getLogger(__name__)
-```
-
-To log a message:
-
-    logger.info("my message")
-
-In your `main` routine, include:
-
-    logging.basicConfig(level=logging.INFO)
-
-to get a basic logging system configured.
+Dependencies for development are specified as the `dev` `extras_require` in `setup.cfg`. For the packaging details, see https://packaging.python.org/tutorials/packaging-projects/ as a reference.
 
 
 ### Tooling
 
-The `dev` `extras_require` included in the template repo installs `black`, `flake8` (plus some plugins), and `mypy` along with default configuration for all of them. You can run all of these (and more!) with:
+The `dev` `extras_require` included in the template repo installs `flake8` (plus some plugins) and `mypy` along with default configuration for all of them. You can run all of these (and more!) with:
 
     tox -e lint
 
@@ -182,115 +134,3 @@ The `dev` `extras_require` included in the template repo installs `black`, `flak
 ### Code Style
 
 So that your code is readable, you should comply with the [PEP8 style guide](https://www.python.org/dev/peps/pep-0008/). Our code style is automatically enforced in via [black](https://pypi.org/project/black/) and [flake8](https://flake8.pycqa.org/en/latest/). See the [Tooling section](#-tooling) for information on invoking the linting pipeline.
-
-❗Important note for template users❗
-The included [pre-commit configuration file](.pre-commit-config.yaml) executes `flake8` (along with `mypy`) across the entire `src` folder and not only on changed files. If you're converting a pre-existing code base over to this template that may result in a lot of errors that you aren't ready to deal with.
-
-You can instead execute `flake8` only over a diff of the current changes being made by modifying the `pre-commit` `entry` line:
-
-    entry: git diff -u | flake8 --diff
-
-Or you can change the `pre-commit` config so `flake8` is only called on changed files which match a certain filtering criteria:
-
-    -   repo: local
-        hooks:
-        -   id: flake8
-            name: flake8
-            entry: flake8
-            files: ^src/|tests/
-            language: system
-
-
-### Recommended Libraries
-
-Python offers a large variety of libraries. In PDS scope, for the most current usage we should use:
-
-| Library      | Usage                                           |
-|--------------|------------------------------------------------ |
-| configparser | manage and parse configuration files            |
-| argparse     | command line argument documentation and parsing |
-| requests     | interact with web APIs                          |
-| lxml         | read/write XML files                            |
-| json         | read/write JSON files                           |
-| pyyaml       | read/write YAML files                           |
-| pystache     | generate files from templates                   |
-
-Some of these are built into Python 3; others are open source add-ons you can include in your `requirements.txt`.
-
-
-### Tests
-
-This section describes testing for your package.
-
-A complete "build" including test execution, linting (`mypy`, `black`, `flake8`, etc.), and documentation build is executed via:
-
-    tox
-
-
-#### Unit tests
-
-Your project should have built-in unit tests, functional, validation, acceptance, etc., tests.
-
-For unit testing, check out the [unittest](https://docs.python.org/3/library/unittest.html) module, built into Python 3.
-
-Tests objects should be in packages `test` modules or preferably in project 'tests' directory which mirrors the project package structure.
-
-Our unit tests are launched with command:
-
-    pytest
-
-If you want your tests to run automatically as you make changes start up `pytest` in watch mode with:
-
-    ptw
-
-
-#### Integration/Behavioral Tests
-
-One should use the `behave package` and push the test results to "testrail".
-
-See an example in https://github.com/NASA-PDS/pds-doi-service#behavioral-testing-for-integration--testing
-
-
-### Documentation
-
-Your project should use [Sphinx](https://www.sphinx-doc.org/en/master/) to build its documentation. PDS' documentation template is already configured as part of the default build. You can build your projects docs with:
-
-    python setup.py build_sphinx
-
-You can access the build files in the following directory relative to the project root:
-
-    build/sphinx/html/
-
-
-## Build
-
-    pip install wheel
-    python setup.py sdist bdist_wheel
-
-
-## Publication
-
-NASA PDS packages can publish automatically using the [Roundup Action](https://github.com/NASA-PDS/roundup-action), which leverages GitHub Actions to perform automated continuous integration and continuous delivery. A default workflow that includes the Roundup is provided in the `.github/workflows/unstable-cicd.yaml` file. (Unstable here means an interim release.)
-
-
-### Manual Publication
-
-Create the package:
-
-    python setup.py bdist_wheel
-
-Publish it as a Github release.
-
-Publish on PyPI (you need a PyPI account and configure `$HOME/.pypirc`):
-
-    pip install twine
-    twine upload dist/*
-
-Or publish on the Test PyPI (you need a Test PyPI account and configure `$HOME/.pypirc`):
-
-    pip install twine
-    twine upload --repository testpypi dist/*
-
-## CI/CD
-
-The template repository comes with our two "standard" CI/CD workflows, `stable-cicd` and `unstable-cicd`. The unstable build runs on any push to `main` (± ignoring changes to specific files) and the stable build runs on push of a release branch of the form `release/<release version>`. Both of these make use of our GitHub actions build step, [Roundup](https://github.com/NASA-PDS/roundup-action). The `unstable-cicd` will generate (and constantly update) a SNAPSHOT release. If you haven't done a formal software release you will end up with a `v0.0.0-SNAPSHOT` release (see NASA-PDS/roundup-action#56 for specifics).

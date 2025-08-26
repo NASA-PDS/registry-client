@@ -24,7 +24,7 @@ repos:
         language: system
         pass_filenames: false
 
-# Black: thanks, I hate it.
+# Black: conflicts with reorder-python-imports, so disabled for now.
 # -   repo: local
 #     hooks:
 #     -   id: black

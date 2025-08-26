@@ -267,12 +267,3 @@ Then, you should get the "ops:Harvest_Info/ops:harvest_date_time" value for the 
 
 
 And so forth, until the page returned contains less than 500 products.
-
-
-
-
-
-
-
-
-

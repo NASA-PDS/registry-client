@@ -26,7 +26,7 @@ Requirements
 Prior to installing this software, ensure your system meets the following
 requirements:
 
-* Python_ 3. This software requires Python 3.9, 3.10, or 3.11.  Python 2 will absolutely *not* work, and indeed Python 2 came to its end of life on the first of January, 2020.  Run ``python --version``, or ``python3 --version``, to check what is installed.
+* Python_ 3. This software requires Python 3.13 or later. Python 2 will absolutely *not* work, and indeed Python 2 came to its end of life on the first of January, 2020.  Run ``python --version``, or ``python3 --version``, to check what is installed.
 * Set environment variables
 
 Consult your operating system instructions or system administrator to install
@@ -37,7 +37,8 @@ using Miniconda_.
 .. _Install Prerequisites:
 
 Prerequisites
-~~~~~~~~~~~
+~~~~~~~~~~~~~
+
 - Personal user/pass credentials for a Cognito user authorized for Registry Amazon OpenSearch Serverless
 - Environment variables (contact pds-operator@jpl.nasa.gov for values), for linux/unix like environments::
 
@@ -107,8 +108,8 @@ Windows Installation
 
 To install the software on Windows comprises the following steps:
 
-1. Installing Python 3.11 for Windows
-2. Creating a "virtual environment" to contain an isolated instance of Python 3.11
+1. Installing Python 3.13 for Windows
+2. Creating a "virtual environment" to contain an isolated instance of Python 3.13
 3. Installing the PDS Registry Client into the virtual environment
 
 The remainder of this section details these steps.
@@ -117,9 +118,9 @@ The remainder of this section details these steps.
 Installing Python for Windows
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Python 3.11 (and specifically Python 3.11—no later or earlier versions will
+Python 3.13 (and specifically Python 3.13—no later or earlier versions will
 work) will need to be installed onto your Windows system. There are several
-ways to get Python 3.11:
+ways to get Python 3.13:
 
 • The "Microsoft Store" app
 • Directly from https://python.org/
@@ -128,19 +129,19 @@ ways to get Python 3.11:
 
 Use whatever is the most familiar to you. If you're not sure, the Microsoft
 Store app is probably the easiest. To use the Microsoft Store to install
-Python 3.11, do the following:
+Python 3.13, do the following:
 
 1. In the Windows taskbar's search box or Start Menu, open Microsoft Store.
-2. In the search box at the top, type ``Python 3.11``
-3. In the list of matching results, press the "Get" button next to Python 3.11.
+2. In the search box at the top, type ``Python 3.13``
+3. In the list of matching results, press the "Get" button next to Python 3.13.
 
 .. tip::
 
     If you're on a managed system, you may need to ask your system
-    administrator to install Python 3.11 for you.
+    administrator to install Python 3.13 for you.
 
 Next, confirm that it's properly installed by opening Windows PowerShell and
-starting Python 3.11 from the command-line. Use the Windows taskbar search
+starting Python 3.13 from the command-line. Use the Windows taskbar search
 box or Start Menu to launch Windows PowerShell, then type ``python3.11`` and
 press Enter.
 
@@ -148,7 +149,7 @@ press Enter.
 
     If you installed Python from https://python.org/ or using Anaconda or
     Miniconda, the command you enter may be ``python3`` or even simply
-    ``python`` instead of ``python3.11``.
+    ``python`` instead of ``python3.13``.
 
 .. tip::
 
@@ -175,12 +176,12 @@ environment for the software.
 To do so, open Windows PowerShell (as above) and at the prompt, type the
 following command (then press Enter)::
 
-    python3.11 -m venv pds
+    python3.13 -m venv pds
 
 .. note::
 
     If you installed Python from https://python.org/ or using Anaconda or
-    Miniconda, you may need to replace ``python3.11`` with ``python3`` or
+    Miniconda, you may need to replace ``python3.13`` with ``python3`` or
     even simply ``python``.
 
 This will create a subfolder in the current directory called ``pds`` which
@@ -197,7 +198,7 @@ Install
 ~~~~~~~
 
 Finally, you can install the software. As of this writing, version
-1.1.5 or later is recommended for Windows. To install it, enter the following
+0.4.0 or later is recommended for Windows. To install it, enter the following
 command in the same Windows PowerShell with the ``(pds)`` prompt (then press
 Enter)::
 
