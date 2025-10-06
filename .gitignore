@@ -93,6 +93,7 @@ var/
 bin/
 .*.swp
 typescript
+.env
 
 # OS-specific artifacts
 .DS_Store
