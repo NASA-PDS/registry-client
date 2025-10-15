@@ -1,5 +1,13 @@
 # Changelog
 
+## [«unknown»](https://github.com/NASA-PDS/registry-client/tree/«unknown») (2025-10-15)
+
+[Full Changelog](https://github.com/NASA-PDS/registry-client/compare/v0.3.0...«unknown»)
+
+**Improvements:**
+
+- Enable Python 3.12 compatibility [\#34](https://github.com/NASA-PDS/registry-client/issues/34)
+
 ## [v0.3.0](https://github.com/NASA-PDS/registry-client/tree/v0.3.0) (2024-10-15)
 
 [Full Changelog](https://github.com/NASA-PDS/registry-client/compare/v0.2.0...v0.3.0)
