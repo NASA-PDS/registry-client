@@ -10,7 +10,7 @@ Additional functionality may be built out in the future.
 ## Prerequisites
 
 - Personal user/pass credentials for a Cognito user authorized for Registry AOSS
-- Python >=3.13
+- Python >=3.12
 - Environment variables (contact developer for values)
   ```bash
     export REQUEST_SIGNER_AWS_ACCOUNT=''
