@@ -45,7 +45,7 @@ Additional functionality may be built out in the future.
 
 4. Run the tool directly
     ```
-    registry-client --help
+    pds-registry-client --help
     ```
 
 ## Code of Conduct
