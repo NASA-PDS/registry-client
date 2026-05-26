@@ -1,8 +1,16 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/registry-client/tree/«unknown») (2024-09-24)
+## [v0.4.0](https://github.com/NASA-PDS/registry-client/tree/v0.4.0) (2025-11-08)
 
-[Full Changelog](https://github.com/NASA-PDS/registry-client/compare/v0.2.0...«unknown»)
+[Full Changelog](https://github.com/NASA-PDS/registry-client/compare/v0.3.0...v0.4.0)
+
+**Improvements:**
+
+- Enable Python 3.12 compatibility [\#34](https://github.com/NASA-PDS/registry-client/issues/34)
+
+## [v0.3.0](https://github.com/NASA-PDS/registry-client/tree/v0.3.0) (2024-10-15)
+
+[Full Changelog](https://github.com/NASA-PDS/registry-client/compare/v0.2.0...v0.3.0)
 
 **Defects:**
 

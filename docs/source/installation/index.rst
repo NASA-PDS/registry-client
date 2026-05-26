@@ -26,7 +26,7 @@ Requirements
 Prior to installing this software, ensure your system meets the following
 requirements:
 
-* Python_ 3. This software requires Python 3.9, 3.10, or 3.11.  Python 2 will absolutely *not* work, and indeed Python 2 came to its end of life on the first of January, 2020.  Run ``python --version``, or ``python3 --version``, to check what is installed.
+* Python_ 3. This software requires Python 3.12 or later. Python 2 will absolutely *not* work, and indeed Python 2 came to its end of life on the first of January, 2020.  Run ``python --version``, or ``python3 --version``, to check what is installed.
 * Set environment variables
 
 Consult your operating system instructions or system administrator to install
@@ -34,10 +34,13 @@ the required packages. For those without system administrator access and are
 feeling anxious, you could try a local (home directory) Python_ 3 installation
 using Miniconda_.
 
-Prequisites
-~~~~~~~~~~~
+.. _Install Prerequisites:
+
+Prerequisites
+~~~~~~~~~~~~~
+
 - Personal user/pass credentials for a Cognito user authorized for Registry Amazon OpenSearch Serverless
-- Environment variables (contact developer for values)::
+- Environment variables (contact pds-operator@jpl.nasa.gov for values), for linux/unix like environments::
 
     export REQUEST_SIGNER_AWS_ACCOUNT=''
     export REQUEST_SIGNER_AWS_REGION=''
@@ -47,6 +50,8 @@ Prequisites
     export REQUEST_SIGNER_AOSS_ENDPOINT=''
     export REQUEST_SIGNER_COGNITO_USER=''
     export REQUEST_SIGNER_COGNITO_PASSWORD=''
+
+
 
 Doing the Installation on Unix
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -103,8 +108,8 @@ Windows Installation
 
 To install the software on Windows comprises the following steps:
 
-1. Installing Python 3.11 for Windows
-2. Creating a "virtual environment" to contain an isolated instance of Python 3.11
+1. Installing Python 3.12+ for Windows
+2. Creating a "virtual environment" to contain an isolated instance of Python 3.12+
 3. Installing the PDS Registry Client into the virtual environment
 
 The remainder of this section details these steps.
@@ -113,9 +118,9 @@ The remainder of this section details these steps.
 Installing Python for Windows
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Python 3.11 (and specifically Python 3.11—no later or earlier versions will
+Python 3.12 or later (and specifically Python 3.12 or later—no earlier versions will
 work) will need to be installed onto your Windows system. There are several
-ways to get Python 3.11:
+ways to get Python 3.12+:
 
 • The "Microsoft Store" app
 • Directly from https://python.org/
@@ -124,27 +129,27 @@ ways to get Python 3.11:
 
 Use whatever is the most familiar to you. If you're not sure, the Microsoft
 Store app is probably the easiest. To use the Microsoft Store to install
-Python 3.11, do the following:
+Python 3.13, do the following:
 
 1. In the Windows taskbar's search box or Start Menu, open Microsoft Store.
-2. In the search box at the top, type ``Python 3.11``
-3. In the list of matching results, press the "Get" button next to Python 3.11.
+2. In the search box at the top, type ``Python 3.12``
+3. In the list of matching results, press the "Get" button next to Python 3.12.
 
 .. tip::
 
     If you're on a managed system, you may need to ask your system
-    administrator to install Python 3.11 for you.
+    administrator to install Python 3.12+ for you.
 
 Next, confirm that it's properly installed by opening Windows PowerShell and
-starting Python 3.11 from the command-line. Use the Windows taskbar search
-box or Start Menu to launch Windows PowerShell, then type ``python3.11`` and
+starting Python from the command-line. Use the Windows taskbar search
+box or Start Menu to launch Windows PowerShell, then type ``python`` and
 press Enter.
 
 .. note::
 
     If you installed Python from https://python.org/ or using Anaconda or
     Miniconda, the command you enter may be ``python3`` or even simply
-    ``python`` instead of ``python3.11``.
+    ``python``.
 
 .. tip::
 
@@ -171,13 +176,13 @@ environment for the software.
 To do so, open Windows PowerShell (as above) and at the prompt, type the
 following command (then press Enter)::
 
-    python3.11 -m venv pds
+    python -m venv pds
 
 .. note::
 
     If you installed Python from https://python.org/ or using Anaconda or
-    Miniconda, you may need to replace ``python3.11`` with ``python3`` or
-    even simply ``python``.
+    Miniconda, the command you enter may be ``python3`` or even simply
+    ``python``.
 
 This will create a subfolder in the current directory called ``pds`` which
 contains the virtual environment. Next, you'll need to "activate" the virtual
@@ -193,13 +198,26 @@ Install
 ~~~~~~~
 
 Finally, you can install the software. As of this writing, version
-1.1.5 or later is recommended for Windows. To install it, enter the following
+0.4.0 or later is recommended for Windows. To install it, enter the following
 command in the same Windows PowerShell with the ``(pds)`` prompt (then press
 Enter)::
 
     pip install pds.registry-client
 
 Feel free to change the version number in the command as needed.
+
+You need to set the environment to configure the access to Registry OpenSearch server::
+
+    $env:REQUEST_SIGNER_AWS_ACCOUNT=''
+    $env:REQUEST_SIGNER_AWS_REGION=''
+    $env:REQUEST_SIGNER_CLIENT_ID=''
+    $env:REQUEST_SIGNER_USER_POOL_ID=''
+    $env:REQUEST_SIGNER_IDENTITY_POOL_ID=''
+    $env:REQUEST_SIGNER_AOSS_ENDPOINT=''
+    $env:REQUEST_SIGNER_COGNITO_USER='<replace with your username>'
+    $env:REQUEST_SIGNER_COGNITO_PASSWORD='<replace with your password>'
+
+Ask the values you need here to pds-operator@jpl.nasa.gov.
 
 You can then run ``pds-registry-client --help``to get a usage message and ensure
 it's properly installed.

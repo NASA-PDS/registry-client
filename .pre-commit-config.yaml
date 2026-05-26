@@ -3,7 +3,9 @@ repos:
     rev: v4.0.1
     hooks:
     -   id: trailing-whitespace
+        exclude: REQUIREMENTS\.md$
     -   id: end-of-file-fixer
+        exclude: REQUIREMENTS\.md$
     -   id: check-executables-have-shebangs
     -   id: check-merge-conflict
     -   id: debug-statements
@@ -24,7 +26,7 @@ repos:
         language: system
         pass_filenames: false
 
-# Black: thanks, I hate it.
+# Black: conflicts with reorder-python-imports, so disabled for now.
 # -   repo: local
 #     hooks:
 #     -   id: black
@@ -56,6 +58,8 @@ repos:
     hooks:
       - id: detect-secrets
         args:
+          - '--disable-plugin'
+          - 'AbsolutePathDetectorExperimental'
           - '--baseline'
           - '.secrets.baseline'
           - --exclude-files '\.secrets..*'
@@ -69,3 +73,4 @@ repos:
           - --exclude-files 'dist'
           - --exclude-files 'build'
           - --exclude-files '.*\.egg-info'
+          - --exclude-files '\.pre-commit-config.yaml'
